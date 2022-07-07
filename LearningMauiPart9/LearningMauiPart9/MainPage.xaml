@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="LearningMauiPart9.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:LearningMauiPart9.Model"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewmodel="clr-namespace:LearningMauiPart9.ViewModel"
+    Title="{Binding Title}"
+    x:DataType="viewmodel:MainViewModel">
+
+    <StackLayout>
+            <CollectionView ItemsSource="{Binding Results}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Result">
+                        <VerticalStackLayout>
+                            <HorizontalStackLayout
+                                Padding="10"
+                                Spacing="4"
+                                VerticalOptions="Center">
+                                <Label VerticalOptions="Center">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} | {1}">
+                                            <Binding Path="state" />
+                                            <Binding Path="zip" />
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        <Button
+            Command="{Binding GetZipCodesCommand}"
+            IsEnabled="{Binding IsNotBusy}"
+            Text="Get Zipcodes" />
+    </StackLayout>
+</ContentPage>
