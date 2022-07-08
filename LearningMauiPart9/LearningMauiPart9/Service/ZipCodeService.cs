@@ -25,7 +25,7 @@ namespace LearningMauiPart9.Service
             if (_resultList?.Count > 0)
                 return _resultList;
 
-            var url = "https://www.zipwise.com/webservices/citysearch.php?key=dksr5ewwvyy7tnjk&format=json&string=Middletown";
+            var url = "https://www.zipwise.com/webservices/citysearch.php?key=YourKey&format=json&string=Middletown";
             var response = await _httpClient.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
